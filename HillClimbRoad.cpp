@@ -4,7 +4,9 @@
 
 namespace hillclimb{
     
-    HillClimbRoad::HillClimbRoad(const int winWidth, const int winHeight){}
+    HillClimbRoad::HillClimbRoad(const int winWidth, const int winHeight){
+               
+    }
     
     int HillClimbRoad::getPartCount()
     {
@@ -12,6 +14,7 @@ namespace hillclimb{
     }
     
     std::vector<Coordinates> HillClimbRoad::getPartCoords(){
+        if(getPartCount()==0)generatePartsAhead();
         return this->partCoords;
     }
     
@@ -22,63 +25,51 @@ namespace hillclimb{
         };
         this->partCoords.push_back(partCoord);
     }
-
-   //ROAD_LENGHT_FACTOR = choose some road length factor
-
-/*
-   int calculateNewPartX() {
-       //randomize length of the new part using some factor
-   }
-
-   calculateNewPartY() {
-       //randomize y position of the end point of the new part
-   }
-
-   generatePartsAhead() {
-      //generate parts as many as MAX_PART_COUNT - currentPartCount
-   }
-
-   deletePartsBehind() {
-      //delete parts whose x < -DEFAULT_ROAD_LENGTH * ROAD_LENGTH_FACTOR
-   }
-
-   move(int x) {
+    
+    void HillClimbRoad::move(const double x) {
        //move the x's of parts
        //deletePartsBehind
        //generatePartsAhead
+       for (auto& coords: this->partCoords){
+           coords.x -=x;
+       }
    }
 
-   reset()
+   //ROAD_LENGHT_FACTOR = choose some road length factor
+
+
+   int calculateNewPartX() {
+       //randomize length of the new part using some factor
+       return 0;
+   }
+
+   void calculateNewPartY() {
+       //randomize y position of the end point of the new part
+   }
+
+   void HillClimbRoad::generatePartsAhead() {
+      //generate parts as many as MAX_PART_COUNT - currentPartCount
+        addPart(0,500);
+        addPart(1500,500);
+   }
+
+   void deletePartsBehind() {
+      //delete parts whose x < -DEFAULT_ROAD_LENGTH * ROAD_LENGTH_FACTOR
+   }
+
+   
+
+   void reset()
    {
        //clear partCoords
        //add two horizontal parts
        //generatePartsAhead
    }
-   */
+   
 }
 
 /*
-   #include <iostream>
-#include "circle.h"
-
-namespace shapes {
-
-    Circle::Circle(const double radius)
-        : radius(radius){ }
-
-    Circle::~Circle() {}
-
-    double Circle::circumference() const {
-        return 2*3.14*radius;
-    }
-    
-    double Circle::area() const {
-        return 3.14*radius*radius;
-    }
-}
- * 
- * 
- * #include <iostream>
+#include <iostream>
 #include "HillClimbRoad.h"
 
 namespace hillclimb{

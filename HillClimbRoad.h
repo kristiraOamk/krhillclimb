@@ -25,11 +25,10 @@ namespace hillclimb {
         int DEFAULT_ROAD_LENGTH;
 
         HillClimbRoad(int winWidth, int winHeight);
-        //move(int x);
-        //void getPartCoords();
+        void move(double x);
         std::vector<Coordinates> getPartCoords();
         int getPartCount();
-        //reset();
+        void reset();
     };
 }
 

@@ -78,19 +78,23 @@ namespace hillclimb {
         
         auto drawNode = cocos2d::DrawNode::create();
         drawNode->setName("drawNode");
-        /*Loop through partCoordPairs:
-            beginCoords = partCoordPair at current index
-            endCoords = partCoordPair at current index + 1
-            drawNode->drawLine(cocos2d::Point(x of beginCoords, y of beginCoords),
-            cocos2d::Point(x of endCoords, y of endCoords),
+        //Loop through partCoordPairs:
+
+            std::vector<Coordinates> beginCoords = road->getPartCoords();//partCoordPair at current index
+            std::vector<Coordinates> endCoords = road->getPartCoords();//partCoordPair at current index + 1
+            auto beginnin = beginCoords[0];
+            auto end = endCoords[1];
+            drawNode->drawLine(cocos2d::Point(beginnin.x, beginnin.y),
+            cocos2d::Point(end.x,end.y),
+            cocos2d::Color4F::WHITE);
+        
+        //road->getPartCoords();
+
+/*
+        drawNode->drawLine(cocos2d::Point(0,500),
+            cocos2d::Point(1500, 500),
             cocos2d::Color4F::WHITE);
         */
-        std::vector<int> tie(road->getPartCoords());
-//        tie = ;
-        
-        drawNode->drawLine(cocos2d::Point(road->getPartCoords()),
-            cocos2d::Point(150, 1000),
-            cocos2d::Color4F::WHITE);
         this->addChild(drawNode);
     }
 
