@@ -2,10 +2,12 @@
 #include <map>
 #include <chrono>
 #include <iostream>
+#include <vector>
 
 #include "cocos2d.h"
 #include "HillClimbLayer.h"
 #include "HillClimbUtility.h"
+#include "HillClimbRoad.h"
 // Add missing includes here.
 
 namespace hillclimb {
@@ -13,6 +15,8 @@ namespace hillclimb {
     std::map<cocos2d::EventKeyboard::KeyCode,
              std::chrono::high_resolution_clock::time_point> HillClimbLayer::keys;
 
+    HillClimbRoad *road;
+    
     bool HillClimbLayer::init() {
         if (!Layer::init()) {
             return false;
@@ -33,11 +37,12 @@ namespace hillclimb {
         this->carSprite->setPosition(carStartX, carStartY);
         this->carSprite->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
         this->addChild(this->carSprite, 0);
-    
+        
         //Initialize car field here. Arguments: carStartX, carStartY, spriteScale
         //Initialize road field here. Arguments: winWidth, winHeight
+        road = new HillClimbRoad(winWidth, winHeight);
         this->generateRoadParts();
-
+        
         auto eventListener = cocos2d::EventListenerKeyboard::create();
         director->getOpenGLView()->setIMEKeyboardState(true);
         eventListener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event){
@@ -61,13 +66,16 @@ namespace hillclimb {
     }
 
     void HillClimbLayer::generateRoadParts() {
-        //MIN_ROAD_SIZE = 2
+        //int MIN_ROAD_SIZE = 2;
+        
+        
+        //road.
         //get part count of road
         //get part coordinate pairs of road
     
         //if partCount < MIN_ROAD_SIZE
             //return
-
+        
         auto drawNode = cocos2d::DrawNode::create();
         drawNode->setName("drawNode");
         /*Loop through partCoordPairs:
@@ -77,6 +85,12 @@ namespace hillclimb {
             cocos2d::Point(x of endCoords, y of endCoords),
             cocos2d::Color4F::WHITE);
         */
+        std::vector<int> tie(road->getPartCoords());
+//        tie = ;
+        
+        drawNode->drawLine(cocos2d::Point(road->getPartCoords()),
+            cocos2d::Point(150, 1000),
+            cocos2d::Color4F::WHITE);
         this->addChild(drawNode);
     }
 
@@ -115,6 +129,7 @@ namespace hillclimb {
     cocos2d::Scene* HillClimbLayer::createScene() {
         auto scene = cocos2d::Scene::create();
         auto layer = HillClimbLayer::create();
+        //layer->init();
 
         scene->addChild(layer);
         return scene;

@@ -1,8 +1,41 @@
-/* Guards
+#ifndef __ROAD_H_INCLUDED__
+#define __ROAD_H_INCLUDED__
 
-Includes
+#include <HillClimbUtility.h>
+#include <vector>
 
-class HillClimbRoad
+namespace hillclimb {
+
+    class HillClimbRoad {
+    private:
+        double winWidth;
+        double winHeight;
+        std::vector<Coordinates> partCoords;
+       //addPart(int x, int y);
+        void addPart(double x, double y);
+       //calculateNewPartX(prevPartX)
+       double calculateNewPartY();
+       void generatePartsAhead();
+       //deletePartsBehind();
+        
+    public:
+        int MAX_PART_COUNT;
+        int X_ROAD_START;
+        int Y_ROAD_START;
+        int DEFAULT_ROAD_LENGTH;
+
+        HillClimbRoad(int winWidth, int winHeight);
+        //move(int x);
+        //void getPartCoords();
+        std::vector<Coordinates> getPartCoords();
+        int getPartCount();
+        //reset();
+    };
+}
+
+//Includes
+/*
+class HillClimbRoad{
    public
      MAX_PART_COUNT
      X_ROAD_START
@@ -14,6 +47,7 @@ class HillClimbRoad
      getPartCoords()
      getPartCount()
      reset()
+ * 
    private
        partCoords
        addPart(x, y)
@@ -21,5 +55,5 @@ class HillClimbRoad
        double calculateNewPartY()
        void generatePartsAhead()
        deletePartsBehind()
-
-Guards end */
+*/
+#endif
