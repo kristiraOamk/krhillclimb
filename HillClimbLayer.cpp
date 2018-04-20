@@ -66,36 +66,39 @@ namespace hillclimb {
     }
 
     void HillClimbLayer::generateRoadParts() {
-        //int MIN_ROAD_SIZE = 2;
-        
+        int MIN_ROAD_SIZE = 6;
         
         //road.
         //get part count of road
         //get part coordinate pairs of road
     
-        //if partCount < MIN_ROAD_SIZE
+        if (road->getPartCount() < MIN_ROAD_SIZE);
+            //road.DEFAULT_ROAD_LENGTH=MIN_ROAD_SIZE;
+            
             //return
-        
-        auto drawNode = cocos2d::DrawNode::create();
-        drawNode->setName("drawNode");
-        //Loop through partCoordPairs:
+        for(int i=0;i<MIN_ROAD_SIZE;i++)
+        {
+            auto drawNode = cocos2d::DrawNode::create();
+            drawNode->setName("drawNode");
+            //Loop through partCoordPairs:
 
-            std::vector<Coordinates> beginCoords = road->getPartCoords();//partCoordPair at current index
-            std::vector<Coordinates> endCoords = road->getPartCoords();//partCoordPair at current index + 1
-            auto beginnin = beginCoords[0];
-            auto end = endCoords[1];
-            drawNode->drawLine(cocos2d::Point(beginnin.x, beginnin.y),
-            cocos2d::Point(end.x,end.y),
-            cocos2d::Color4F::WHITE);
-        
-        //road->getPartCoords();
+                std::vector<Coordinates> beginCoords = road->getPartCoords();//partCoordPair at current index
+                std::vector<Coordinates> endCoords = road->getPartCoords();//partCoordPair at current index + 1
+                auto beginnin = beginCoords[i-1];
+                auto end = endCoords[i];
+                drawNode->drawLine(cocos2d::Point(beginnin.x, beginnin.y),
+                cocos2d::Point(end.x,end.y),
+                cocos2d::Color4F::WHITE);
 
-/*
-        drawNode->drawLine(cocos2d::Point(0,500),
-            cocos2d::Point(1500, 500),
-            cocos2d::Color4F::WHITE);
-        */
-        this->addChild(drawNode);
+            //road->getPartCoords();
+
+    /*
+            drawNode->drawLine(cocos2d::Point(0,500),
+                cocos2d::Point(1500, 500),
+                cocos2d::Color4F::WHITE);
+            */
+            this->addChild(drawNode);
+        }
     }
 
     void HillClimbLayer::deleteRoadParts() {

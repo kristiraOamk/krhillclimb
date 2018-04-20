@@ -12,8 +12,8 @@ namespace hillclimb {
         double winHeight;
         std::vector<Coordinates> partCoords;
        //addPart(int x, int y);
-        void addPart(double x, double y);
-       //calculateNewPartX(prevPartX)
+       void addPart(double x, double y);
+       double calculateNewPartX(double prevPartX);
        double calculateNewPartY();
        void generatePartsAhead();
        //deletePartsBehind();

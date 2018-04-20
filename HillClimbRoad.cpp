@@ -5,7 +5,9 @@
 namespace hillclimb{
     
     HillClimbRoad::HillClimbRoad(const int winWidth, const int winHeight){
-               
+        DEFAULT_ROAD_LENGTH=100;
+        addPart(0,500);
+        while(getPartCount()<DEFAULT_ROAD_LENGTH)generatePartsAhead();       
     }
     
     int HillClimbRoad::getPartCount()
@@ -14,7 +16,6 @@ namespace hillclimb{
     }
     
     std::vector<Coordinates> HillClimbRoad::getPartCoords(){
-        if(getPartCount()==0)generatePartsAhead();
         return this->partCoords;
     }
     
@@ -38,19 +39,28 @@ namespace hillclimb{
    //ROAD_LENGHT_FACTOR = choose some road length factor
 
 
-   int calculateNewPartX() {
+   double HillClimbRoad::calculateNewPartX(double ex) {
        //randomize length of the new part using some factor
-       return 0;
+       return ex+1500;
    }
 
-   void calculateNewPartY() {
+   double HillClimbRoad::calculateNewPartY() {
        //randomize y position of the end point of the new part
+       return 500;//+(partCoords.size()*partCoords.size());
    }
 
    void HillClimbRoad::generatePartsAhead() {
       //generate parts as many as MAX_PART_COUNT - currentPartCount
-        addPart(0,500);
-        addPart(1500,500);
+            //std::vector<Coordinates> beginCoords = getPartCoords();//partCoordPair at current index + 1
+            //auto beginnin = beginCoords[partCoords.size()-1];
+            
+        //addPart(beginnin.x,calculateNewPartY());
+            //addPart(50,100);
+            addPart(100,500);
+            addPart(200,600);
+            addPart(300,500);
+        addPart(400,600);
+        addPart(500,400);
    }
 
    void deletePartsBehind() {
