@@ -7,7 +7,8 @@ namespace hillclimb{
     HillClimbRoad::HillClimbRoad(const int winWidth, const int winHeight){
         DEFAULT_ROAD_LENGTH=100;
         addPart(0,500);
-        while(getPartCount()<DEFAULT_ROAD_LENGTH)generatePartsAhead();       
+        //while(getPartCount()<DEFAULT_ROAD_LENGTH);
+        generatePartsAhead();       
     }
     
     int HillClimbRoad::getPartCount()
@@ -41,7 +42,9 @@ namespace hillclimb{
 
    double HillClimbRoad::calculateNewPartX(double ex) {
        //randomize length of the new part using some factor
-       return ex+1500;
+       double roadX=ex+100;
+       std::cout <<"roadX "<< roadX<<"\n";
+       return roadX;
    }
 
    double HillClimbRoad::calculateNewPartY() {
@@ -51,16 +54,51 @@ namespace hillclimb{
 
    void HillClimbRoad::generatePartsAhead() {
       //generate parts as many as MAX_PART_COUNT - currentPartCount
-            //std::vector<Coordinates> beginCoords = getPartCoords();//partCoordPair at current index + 1
-            //auto beginnin = beginCoords[partCoords.size()-1];
+            std::vector<Coordinates> beginCoords = getPartCoords();//partCoordPair at current index + 1
+            auto beginnin = beginCoords[partCoords.size()-1];
+            double xx=calculateNewPartX(beginnin.x);
+            addPart(xx,500);
+            std::cout <<"beg " << beginnin.x<<"\n";
+            std::cout <<"1 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
             
+            beginnin = beginCoords[partCoords.size()-1];
+            std::cout <<"beg " << beginnin.x<<"\n";
+            xx=calculateNewPartX(beginnin.x);
+            addPart(xx,600);
+            std::cout <<"2 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
+            
+            beginnin = beginCoords[partCoords.size()-2];
+            std::cout <<"beg " << beginnin.x<<"\n";
+            xx=calculateNewPartX(beginnin.x);
+            addPart(xx,300);
+            std::cout <<"3 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
+            
+            beginnin = beginCoords[partCoords.size()-1];
+            std::cout <<"beg " << beginnin.x<<"\n";
+            xx=calculateNewPartX(beginnin.x);
+            addPart(xx,500);
+            std::cout <<"4 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
+            
+            beginnin = beginCoords[partCoords.size()-1];
+            std::cout <<"beg " << beginnin.x<<"\n";
+            xx=calculateNewPartX(beginnin.x);
+            addPart(xx,600);
+            std::cout <<"5 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
+            
+            beginnin = beginCoords[partCoords.size()-1];
+            std::cout <<"beg " << beginnin.x<<"\n";
+            xx=calculateNewPartX(beginnin.x);
+            addPart(xx,500);
+            std::cout <<"6 size"<< partCoords.size() << "x" <<beginnin.x << " xx "<<xx<< "\n";
+
         //addPart(beginnin.x,calculateNewPartY());
             //addPart(50,100);
-            addPart(100,500);
+        /*    
             addPart(200,600);
             addPart(300,500);
         addPart(400,600);
         addPart(500,400);
+        */
    }
 
    void deletePartsBehind() {
