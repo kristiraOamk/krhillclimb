@@ -1,12 +1,11 @@
-name: T01 - Hello
+name: T02 - Manual only
 
 on:
-  push:    # käynnistyy kun pushaat mitä tahansa branchiin
-    branches: [ main ]
+  workflow_dispatch: {}  # vain käsin ajettavissa
 
 jobs:
-  hello:
+  manual:
     runs-on: ubuntu-latest
     steps:
-      - name: Print hello
-        run: echo "Hello Actions!"
+      - name: Say hi
+        run: echo "Manual run OK"
