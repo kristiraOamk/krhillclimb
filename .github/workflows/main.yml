@@ -1,0 +1,12 @@
+name: T01 - Hello
+
+on:
+  push:    # käynnistyy kun pushaat mitä tahansa branchiin
+    branches: [ main ]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print hello
+        run: echo "Hello Actions!"
