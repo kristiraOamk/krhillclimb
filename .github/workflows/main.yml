@@ -4,8 +4,8 @@ on:
   workflow_dispatch: {}  # vain käsin ajettavissa
 
 jobs:
-  manual:
-    runs-on: ubuntu-latest
+ manual:
+runs-on: ubuntu-latest
     steps:
       - name: Say hi
         run: echo "Manual run OK"
